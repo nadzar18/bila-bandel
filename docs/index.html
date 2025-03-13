@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halo Bocil Bandel! 🌸💕</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Background dengan gambar bunga */
+        body {
+            background: url('https://i.imgur.com/V7IOrqO.jpg'); /* Ganti dengan gambar bunga lucu */
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Container */
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px 30px;
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+            max-width: 400px;
+            border: 3px solid #ff4081;
+            animation: glow 2s infinite alternate;
+        }
+
+        /* Animasi Glowing */
+        @keyframes glow {
+            from { box-shadow: 0 0 10px #ff80ab; }
+            to { box-shadow: 0 0 20px #ff4081; }
+        }
+
+        h1 {
+            color: #ff4081;
+            font-size: 26px;
+            margin-bottom: 15px;
+            animation: bounce 1.5s infinite alternate;
+            text-shadow: 2px 2px 5px rgba(255, 64, 129, 0.5);
+        }
+
+        .pujian {
+            font-size: 20px;
+            color: #d63384;
+            font-weight: 700;
+            opacity: 0;
+            transform: translateY(-10px);
+            animation: fadeIn 1s forwards;
+            text-shadow: 2px 2px 5px rgba(255, 100, 150, 0.5);
+        }
+
+        .button {
+            background-color: #ff4081;
+            color: white;
+            padding: 10px 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 10px rgba(255, 64, 129, 0.4);
+        }
+
+        .button:hover {
+            background-color: #d63384;
+            transform: scale(1.1);
+        }
+
+        /* Animasi Bubble Love */
+        .bubble {
+            position: absolute;
+            font-size: 20px;
+            color: #ff4081;
+            opacity: 0.7;
+            animation: floatUp 2s ease-in-out;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100px); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Halo Bocil Bandel! 💕</h1>
+        <p class="pujian" id="pujianText">Bila, kamu itu kayak bintang. Selalu bersinar! ✨</p>
+        <button class="button" onclick="nextPujian()">Pujian Lain 💖</button>
+    </div>
+
+    <!-- Suara gelembung -->
+    <audio id="bubbleSound" src="https://www.fesliyanstudios.com/play-mp3/4384"></audio>
+
+    <script>
+        const pujianList = [
+            "Bila, kamu itu kayak bintang. Selalu bersinar! ✨",
+            "Senyummu bisa bikin hari siapa aja jadi lebih baik 😊",
+            "Kamu itu definisi sempurna dari kebaikan dan kecantikan! 💖",
+            "Bila, kamu punya aura yang bikin orang nyaman banget 🌸",
+            "Gak ada yang bisa ngalahin pesonamu, Bila! 😍"
+        ];
+
+        let index = 0;
+
+        function nextPujian() {
+            index = (index + 1) % pujianList.length;
+            let pujianText = document.getElementById("pujianText");
+            let bubbleSound = document.getElementById("bubbleSound");
+
+            pujianText.style.opacity = "0";
+            bubbleSound.play(); // Play sound effect
+
+            setTimeout(() => {
+                pujianText.innerHTML = pujianList[index];
+                pujianText.style.opacity = "1";
+            }, 500);
+
+            createBubble();
+        }
+
+        // Love Bubble Animation
+        function createBubble() {
+            const bubble = document.createElement("div");
+            bubble.classList.add("bubble");
+            bubble.innerHTML = "💖";
+            document.body.appendChild(bubble);
+
+            // Random Position
+            bubble.style.left = Math.random() * window.innerWidth + "px";
+            bubble.style.top = Math.random() * window.innerHeight + "px";
+
+            setTimeout(() => {
+                bubble.remove();
+            }, 2000);
+        }
+    </script>
+
+</body>
+</html>
