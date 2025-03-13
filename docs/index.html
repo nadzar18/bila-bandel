@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halo Bocil Bandel! 🌸💕</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Background Pink */
+        body {
+            background-color: #ffc0cb; /* Warna Pink Pastel */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Container */
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px 30px;
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+            max-width: 400px;
+            border: 3px solid #ff4081;
+        }
+
+        h1 {
+            color: #ff4081;
+            font-size: 26px;
+            margin-bottom: 15px;
+        }
+
+        /* Chat Container */
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+            max-width: 350px;
+            height: 300px;
+            overflow-y: auto;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(255, 64, 129, 0.4);
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        /* Chat Bubble */
+        .chat-bubble {
+            background: #ff80ab;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 15px 15px 15px 5px;
+            margin-bottom: 10px;
+            max-width: 70%;
+            font-size: 16px;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeInUp 0.5s ease-in-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Tombol */
+        .button {
+            background-color: #ff4081;
+            color: white;
+            padding: 10px 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 10px rgba(255, 64, 129, 0.4);
+        }
+
+        .button:hover {
+            background-color: #d63384;
+            transform: scale(1.1);
+        }
+
+        /* Tombol Musik */
+        .music-button {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: #ff4081;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(255, 64, 129, 0.4);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .music-button:hover {
+            background-color: #d63384;
+            transform: scale(1.1);
+        }
+
+        /* Animasi Balon Love */
+        .love {
+            position: absolute;
+            color: #ff4081;
+            font-size: 24px;
+            animation: fall 4s linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10%);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Halo Bocil Bandel! 💕</h1>
+        <div class="chat-container" id="chatContainer"></div>
+        <button class="button" onclick="nextPujian()">💌 Kirim Pesan</button>
+    </div>
+
+    <!-- Musik Latar -->
+    <audio id="bgMusic" loop>
+        <source src="https://archive.org/download/AndraAndTheBackboneSempurna_201811/Andra%20And%20The%20Backbone%20-%20Sempurna.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Tombol Play/Pause Musik -->
+    <button class="music-button" onclick="toggleMusic()">🎶 Play Music</button>
+
+    <script>
+        const pujianList = [
+            "Bila, kamu itu kayak bintang. Selalu bersinar! ✨",
+            "Senyummu bisa bikin hari siapa aja jadi lebih baik 😊",
+            "Kamu itu definisi sempurna dari kebaikan dan kecantikan! 💖",
+            "Bila, kamu punya aura yang bikin orang nyaman banget 🌸",
+            "Gak ada yang bisa ngalahin pesonamu, Bila! 😍"
+        ];
+
+        function nextPujian() {
+            let chatContainer = document.getElementById("chatContainer");
+            let newChat = document.createElement("div");
+            newChat.classList.add("chat-bubble");
+            newChat.innerText = pujianList[Math.floor(Math.random() * pujianList.length)];
+            
+            chatContainer.appendChild(newChat);
+            
+            // Scroll otomatis ke bawah biar pesan terbaru selalu terlihat
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function toggleMusic() {
+            let music = document.getElementById("bgMusic");
+
+            if (music.paused) {
+                music.play();
+                document.querySelector(".music-button").innerText = "⏸️ Pause Music";
+            } else {
+                music.pause();
+                document.querySelector(".music-button").innerText = "🎶 Play Music";
+            }
+        }
+
+        function createLove() {
+            let love = document.createElement("div");
+            love.classList.add("love");
+            love.innerHTML = "❤️";
+            love.style.left = Math.random() * 100 + "vw";
+            love.style.animationDuration = Math.random() * 2 + 3 + "s";
+            document.body.appendChild(love);
+            setTimeout(() => love.remove(), 4000);
+        }
+
+        setInterval(createLove, 500);
+    </script>
+</body>
+</html>
